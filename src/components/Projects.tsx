@@ -11,19 +11,17 @@ import { SectionHeading } from './SectionHeading';
 function ProjectCard({
   project,
   feature,
-  last,
   onOpen,
 }: {
   project: Project;
   feature?: boolean;
-  last?: boolean;
   onOpen: () => void;
 }) {
   return (
     <motion.article
       variants={fadeUp}
       className={`group relative overflow-hidden rounded-[28px] bg-elevated shadow-soft ring-1 ring-line/50 transition-shadow duration-500 hover:shadow-lift ${
-        feature ? 'md:col-span-2 lg:col-span-3 lg:grid lg:grid-cols-[1.45fr_1fr]' : last ? 'md:col-span-2 lg:col-span-1' : ''
+        feature ? 'md:col-span-2 lg:grid lg:grid-cols-[1.45fr_1fr]' : ''
       }`}
     >
       <motion.div
@@ -178,13 +176,13 @@ export function Projects() {
           id="projects-title"
           eyebrow="Selected Work"
           title={'每一個專案，\n都是解決真實問題的旅程。'}
-          description="以下是在 Garmin、Corning 與群光電能的代表專案，橫跨穿戴裝置、車用玻璃與電源產品。點擊任一專案，了解背後的挑戰與解法。"
+          description="以下是在 Garmin、Corning 與群光電能的代表專案，橫跨穿戴裝置、手持產品、車用玻璃與電源產品。點擊任一專案，了解背後的挑戰與解法。"
         />
 
         <LayoutGroup>
-          <RevealGroup className="mt-14 grid gap-5 md:mt-20 md:grid-cols-2 lg:grid-cols-3" gap={0.1}>
+          <RevealGroup className="mt-14 grid gap-5 md:mt-20 md:grid-cols-2" gap={0.1}>
             {projects.map((p, i) => (
-              <ProjectCard key={p.id} project={p} feature={i === 0} last={i === projects.length - 1 && projects.length % 2 === 0} onOpen={() => setOpenId(p.id)} />
+              <ProjectCard key={p.id} project={p} feature={i === 0} onOpen={() => setOpenId(p.id)} />
             ))}
           </RevealGroup>
 

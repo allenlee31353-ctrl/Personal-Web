@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import type { MouseEvent } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { expertise, type Expertise as Item } from '../data/content';
+import { expertise, toolkit, type Expertise as Item } from '../data/content';
 import { fadeUp } from '../lib/motion';
-import { RevealGroup } from './Reveal';
+import { Reveal, RevealGroup } from './Reveal';
 import { SectionHeading } from './SectionHeading';
 
 // Bento placement on large screens (4-column grid).
@@ -113,6 +113,18 @@ export function Expertise() {
             <Card key={item.title} item={item} index={i} />
           ))}
         </RevealGroup>
+
+        <Reveal className="mt-14 border-t border-line/70 pt-10 md:mt-20">
+          <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-muted">Toolkit・工具與方法</h3>
+          <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+            {toolkit.map((g) => (
+              <div key={g.label}>
+                <dt className="text-[15px] font-semibold text-ink">{g.label}</dt>
+                <dd className="mt-2 text-[15px] leading-relaxed text-muted">{g.items.join('・')}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );

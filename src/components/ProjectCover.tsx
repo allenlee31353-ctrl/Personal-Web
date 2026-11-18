@@ -10,6 +10,7 @@ export const coverTheme: Record<CoverVariant, { bg: string; dark: boolean }> = {
   bonding: { bg: '#0B0B0E', dark: true },
   glassline: { bg: '#E9EEF2', dark: false },
   fea: { bg: '#0A1424', dark: true },
+  handheld: { bg: '#EEF0EC', dark: false },
 };
 
 function Watch() {
@@ -208,7 +209,58 @@ function Fea() {
   );
 }
 
-const art: Record<CoverVariant, () => JSX.Element> = { watch: Watch, bonding: Bonding, glassline: GlassLine, fea: Fea };
+function Handheld() {
+  // A rugged handheld GPS sitting in a universal-slot tray, annotated like a design guideline.
+  const contour = (r: number) => `M${300 - r} 170 q ${r} ${-r * 0.55} ${r * 2} 0 q ${-r} ${r * 0.6} ${-r * 2} 0`;
+  return (
+    <>
+      <defs>
+        <clipPath id="hh-screen">
+          <rect x="258" y="112" width="84" height="104" rx="8" />
+        </clipPath>
+      </defs>
+      {/* universal-slot tray */}
+      <rect x="60" y="250" width="480" height="70" rx="14" fill="#ffffff" stroke="#1D1D1F" strokeOpacity="0.08" />
+      {Array.from({ length: 6 }).map((_, i) => (
+        <rect key={i} x={78 + i * 76} y="262" width="64" height="46" rx="8" fill="#1D1D1F" fillOpacity={i === 3 ? 0 : 0.06} stroke={i === 3 ? '#0071E3' : 'none'} strokeDasharray="4 4" strokeWidth="1.5" />
+      ))}
+      {/* device */}
+      <rect x="296" y="36" width="8" height="34" rx="4" fill="#2C2C2E" />
+      <rect x="236" y="64" width="128" height="226" rx="28" fill="#2C2C2E" />
+      <rect x="244" y="72" width="112" height="210" rx="22" fill="#3A3A3E" />
+      <rect x="254" y="108" width="92" height="112" rx="10" fill="#0b0b0d" />
+      <g clipPath="url(#hh-screen)">
+        <rect x="258" y="112" width="84" height="104" fill="#E9F0E4" />
+        {[10, 22, 34, 48, 64].map((r) => (
+          <path key={r} d={contour(r)} fill="none" stroke="#6B8F5A" strokeOpacity="0.55" strokeWidth="1.2" />
+        ))}
+        <path d="M268 206 C 285 190, 290 170, 305 160 S 330 130, 336 122" fill="none" stroke="#0071E3" strokeWidth="2.5" strokeDasharray="4 3" />
+        <circle cx="305" cy="160" r="4" fill="#0071E3" stroke="#fff" strokeWidth="1.5" />
+      </g>
+      {/* seal line (dashed) around front housing */}
+      <rect x="240" y="68" width="120" height="218" rx="25" fill="none" stroke="#0071E3" strokeWidth="1.5" strokeDasharray="1 5" strokeLinecap="round" />
+      {[0, 1, 2].map((i) => (
+        <circle key={i} cx={274 + i * 26} cy="250" r="9" fill="#2C2C2E" stroke="#4a4a4f" />
+      ))}
+      {/* callouts */}
+      <g fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600">
+        <line x1="240" y1="120" x2="176" y2="104" stroke="#0071E3" strokeWidth="1.2" />
+        <circle cx="240" cy="120" r="3" fill="#0071E3" />
+        <text x="170" y="100" textAnchor="end" fill="#0071E3">Seal line</text>
+        <text x="170" y="115" textAnchor="end" fill="#86868B" fontWeight="500">Waterproof</text>
+
+        <line x1="360" y1="180" x2="420" y2="160" stroke="#1D1D1F" strokeOpacity="0.5" strokeWidth="1.2" />
+        <circle cx="360" cy="180" r="3" fill="#1D1D1F" />
+        <text x="426" y="156" fill="#1D1D1F">Glue path</text>
+        <text x="426" y="171" fill="#86868B" fontWeight="500">No leakage</text>
+
+        <text x="78" y="240" fill="#0071E3">Universal slot · +66% / area</text>
+      </g>
+    </>
+  );
+}
+
+const art: Record<CoverVariant, () => JSX.Element> = { watch: Watch, bonding: Bonding, glassline: GlassLine, fea: Fea, handheld: Handheld };
 
 export const ProjectCover = memo(function ProjectCover({ variant, title }: { variant: CoverVariant; title: string }) {
   const Art = art[variant];

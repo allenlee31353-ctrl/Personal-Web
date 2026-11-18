@@ -1,6 +1,6 @@
 /**
  * 網站所有文字內容集中管理於此檔。
- * 內容依據 Allen Lee 履歷（2026.08）整理；修改此檔即可更新全站，元件不需修改。
+ * 內容依據 Allen Lee 履歷（2026.08）與 LinkedIn 個人檔案整理；修改此檔即可更新全站，元件不需修改。
  */
 import type { LucideIcon } from 'lucide-react';
 import { Rocket, Droplets, Wrench, Box, ShieldCheck, KanbanSquare } from 'lucide-react';
@@ -9,7 +9,7 @@ export const profile = {
   name: '李建霆',
   nameEn: 'Allen Lee',
   initials: 'AL',
-  role: 'NPI Engineer II / Project Lead',
+  role: 'NPI Advanced Engineer',
   company: 'Garmin Asia',
   location: '桃園，台灣',
   email: 'allenlee31353@hotmail.com',
@@ -19,7 +19,7 @@ export const profile = {
   headlineAccent: '科技體驗',
   tagline: '專注於技術、設計與創新，持續探索科技的更多可能。',
   intro:
-    '我是李建霆，現任 Garmin Asia 新產品導入（NPI）工程師暨專案負責人。機械工程碩士出身，十餘年來從 CAE 模擬、玻璃製程設備到穿戴裝置量產，專注把新產品從設計圖穩定地帶進量產線。',
+    '我是李建霆，現任 Garmin Asia 資深新產品導入（NPI Advanced）工程師。機械工程碩士出身，累積 4 年 CAE 模擬、近 3 年玻璃製程設備與 5 年以上穿戴裝置量產經驗，專注把新產品從設計圖穩定地帶進量產線。',
 };
 
 export const socials = [
@@ -43,39 +43,62 @@ export const navItems = [
 export const stats = [
   { value: 13, suffix: '+', label: '年製造與研發經驗' },
   { value: 160, prefix: '$', suffix: 'M', label: '主導新產線投資（美元）' },
-  { value: 100, suffix: '%', label: 'Forerunner 45/55 良率' },
-  { value: 150, suffix: '%', label: 'PUR 4.0 新設備 ROI' },
+  { value: 100, suffix: '%', label: 'Forerunner 55 良率' },
+  { value: 66, prefix: '+', suffix: '%', label: '通用槽位設計單位面積產能' },
 ];
 
 export const aboutParagraphs = [
-  '我在國立中央大學完成機械工程學士與碩士，研究有限元素分析、振動與破壞力學。畢業後在群光電能擔任機構與 CAE 工程師，用模擬預測產品的落球與落摔表現；接著加入康寧（Corning）亞洲區，負責玻璃後加工設備，主導 1.6 億美元的新產線導入。',
-  '2021 年起，我在 Garmin Asia 擔任 NPI 工程師與專案負責人，帶領跨職能團隊開發穿戴與戶外產品的新製程，從 PUR、LOCA 光學貼合到新設備設計，持續在品質、成本與交期（QCD）之間找到最佳解。',
+  '我在國立中央大學完成機械工程學士與碩士。畢業後在群光電能先擔任 CAE 工程師，以 Abaqus 預測落球、落摔與超音波熔接等設計表現；之後轉任量產機構工程師，在中國廠完成 EVT、DVT、PVT 到 MP 的導入。',
+  '接著我加入康寧（Corning）亞洲區，負責玻璃製程設備與載具設計，與捷克、中國、韓國與新加坡的供應商合作，主導 1.6 億美元的車用玻璃新產線。2021 年起在 Garmin Asia 擔任 NPI 工程師，2025 年晉升為 NPI Advanced Engineer，帶領健身、戶外、航空與手持產品從開發走進量產，並指導新進工程師獨立執行製程。',
 ];
 
 export const values = [
-  { title: '用數據找根因', text: '以 PFMEA 與 8D 拆解問題，讓每次改善都有證據、可複製。' },
-  { title: '跨團隊協作', text: '串起研發、品保、供應商與產線，讓新產品準時走進量產。' },
-  { title: '持續精進', text: '從模擬、設備到製程，把每個專案累積成下一個專案的能力。' },
+  { title: '用數據找根因', text: '以 PFMEA、8D 與 Minitab SPC 拆解問題，讓每次改善都有證據、可複製。' },
+  { title: '把經驗變成準則', text: '把量產問題寫成設計與治具準則，讓下一個產品在設計階段就避開風險。' },
+  { title: '帶人一起成長', text: '透過 Confluence 文件與跨部門討論推動製程標準化，並指導新進工程師獨立作業。' },
 ];
 
-export const experience = [
+export interface Experience {
+  period: string;
+  title: string;
+  org: string;
+  text: string;
+  highlights?: string[];
+}
+
+export const experience: Experience[] = [
   {
-    period: '2021.03 — 至今',
+    period: '2025.06 — 至今',
+    title: 'NPI Advanced Engineer',
+    org: 'Garmin Asia｜桃園',
+    text: '帶領 Instinct 系列手錶的製程開發專案，指導新進工程師獨立執行製程，並推動製程能力提升與標準化。',
+    highlights: ['Instinct 系列製程開發', '新進工程師指導', 'Confluence 製程標準化'],
+  },
+  {
+    period: '2021.03 — 2025.06',
     title: 'NPI Engineer II / Project Lead',
     org: 'Garmin Asia・亞洲製造與營運｜桃園',
-    text: '帶領 Instinct 3 系列產品團隊開發新製程，並主導 Forerunner 265、Foretrex 801、Lily 2 等產品從 NPI 導入量產。',
+    text: '開發鏡片與錶圈 PUR 黏著、蓋板玻璃與 LCM 的 LOCA 光學貼合製程，帶領 Forerunner、Venu、InReach、Lily 2 等健身、戶外、航空與手持產品導入量產。',
+    highlights: ['Forerunner 55 良率 97% → 100%', 'InReach 良率 +22.5%', 'Venu 貼合成本 −6.7%', '通用槽位產能 +66%'],
   },
   {
     period: '2017.06 — 2020.04',
     title: 'Process Equipment Engineer',
     org: 'Corning Incorporated (MTE Asia)｜台中',
-    text: '主導亞洲區新設備計畫，導入投資額 1.6 億美元的玻璃後加工新產線，並於合肥廠正式量產。',
+    text: '主導亞洲區新設備與新產線導入，負責清洗與表面處理設備、載具與治具設計，並以 CAE 評估卡匣與設備結構。',
+    highlights: ['US$160M 車用玻璃新產線', 'Varioptic 載具輕量化 18%', 'Gen 8.5 大片玻璃搬運治具'],
   },
   {
-    period: '2013.11 — 2017.03',
-    title: 'Mechanical Engineer / CAE Engineer',
+    period: '2015.05 — 2017.03',
+    title: 'Mechanical Engineer (MP)',
     org: '群光電能 Chicony Power Technology｜新北',
-    text: '開發 Lenovo 45W 變壓器機構件，並以 Abaqus 模擬落球、落摔與接觸力測試，支援研發設計決策。',
+    text: '開發變壓器外殼、散熱片、屏蔽板與線材，於中國廠完成 EVT、DVT、PVT 到 MP，並與模具廠確認材料與設計、執行塑膠外殼超音波熔接。',
+  },
+  {
+    period: '2013.11 — 2015.05',
+    title: 'CAE Engineer (ATC)',
+    org: '群光電能 Chicony Power Technology｜新北',
+    text: '以 Abaqus 模擬落球、落摔、超音波熔接、接觸力、橡膠按鍵力行程、彈簧力與支架強度，預測新品設計趨勢並回饋研發。',
   },
   {
     period: '2012.05 — 2013.08',
@@ -106,49 +129,57 @@ export const expertise: Expertise[] = [
     icon: Rocket,
     title: '新產品導入',
     en: 'New Product Introduction',
-    text: '從 EVT、DVT 到量產，規劃製程能力、成本與良率，帶領跨職能團隊把消費性電子產品穩定送進量產線。',
-    tags: ['NPI → MP', 'QCD', 'Fitness', 'Outdoor', 'Handheld'],
+    text: '從 EVT、DVT、PVT 到量產，規劃製程能力、成本、良率與風險評估，帶領跨職能團隊把健身、戶外、航空與手持產品穩定送進量產線。',
+    tags: ['NPI → MP', 'QCD', 'Fitness', 'Outdoor', 'Aviation', 'Handheld'],
   },
   {
     icon: Droplets,
     title: '黏著與光學貼合製程',
     en: 'Adhesive & Optical Bonding',
-    text: '開發鏡片與錶圈的 PUR 黏著，以及蓋板玻璃與 LCM 的 LOCA 光學貼合製程。',
-    tags: ['PUR', 'LOCA', 'Optical Bonding'],
+    text: '開發鏡片與錶圈的 PUR 黏著、蓋板玻璃與 LCM 的 LOCA 貼合，並評估新膠材。',
+    tags: ['PUR', 'LOCA', '新膠材評估'],
   },
   {
     icon: Wrench,
-    title: '設備與治具設計',
-    en: 'Equipment & Fixture Design',
-    text: '設計新製程設備、治具與載具，兼顧結構強度、輕量化與產能。',
-    tags: ['SolidWorks', 'AutoCAD', 'FAT / SAT'],
+    title: '機構與治具設計',
+    en: 'Mechanical & Fixture Design',
+    text: '塑膠與金屬件機構設計，以及製程設備、載具與卡匣設計，兼顧強度、輕量化與產能。',
+    tags: ['SolidWorks', 'AutoCAD', '超音波熔接'],
   },
   {
     icon: Box,
-    title: 'CAE 模擬分析',
-    en: 'CAE Simulation',
-    text: '以有限元素與流體模擬，在打樣前預測結構、落摔與風壓表現。',
-    tags: ['ANSYS', 'Abaqus', 'LS-DYNA'],
+    title: 'CAE 結構分析',
+    en: 'Structural Analysis',
+    text: '4 年 CAE 經驗，以有限元素在打樣前預測落摔、接觸、破壞與結構變形。',
+    tags: ['Abaqus', 'ANSYS', 'LS-DYNA'],
   },
   {
     icon: ShieldCheck,
     title: '品質與問題解決',
     en: 'Quality & Problem Solving',
-    text: '以 PFMEA 預防失效、以 8D 追查根因，並用 ELOT 等驗證確認改善成效。',
-    tags: ['PFMEA', '8D', 'Minitab', 'ELOT'],
+    text: '以 PFMEA 預防失效、以 8D 追查根因，用 Minitab SPC 與 ELOT 驗證改善成效，並建立設計準則降低防水失效與溢膠風險。',
+    tags: ['PFMEA', '8D', 'Minitab SPC', 'ELOT'],
   },
   {
     icon: KanbanSquare,
     title: '專案與供應商管理',
     en: 'Project & Supplier Management',
-    text: '管理時程規劃、SOW、RFQ 與設計審查，協調歐洲、中國與新加坡等跨國供應商。',
-    tags: ['SOW / RFQ', 'Design Review', 'Process Validation'],
+    text: '2.5 年設備專案管理經驗，負責 SOW、RFQ、設計審查、FAT、SAT 與製程驗證，協調歐洲、中國、韓國與新加坡供應商。',
+    tags: ['SOW / RFQ', 'FAT / SAT', 'Process Validation'],
   },
+];
+
+/** Tools listed on the résumé and LinkedIn profile, grouped by use. */
+export const toolkit = [
+  { label: 'CAD', items: ['SolidWorks', 'AutoCAD', 'DraftSight'] },
+  { label: 'CAE', items: ['Abaqus', 'ANSYS', 'ANSYS Fluent', 'LS-DYNA'] },
+  { label: '品質與數據', items: ['Minitab (SPC)', 'PFMEA', '8D', 'Origin', 'Material Test System'] },
+  { label: '協作', items: ['Confluence', 'Microsoft Office', 'Adobe Acrobat'] },
 ];
 
 /* ---------------- Projects ---------------- */
 
-export type CoverVariant = 'watch' | 'bonding' | 'glassline' | 'fea';
+export type CoverVariant = 'watch' | 'bonding' | 'glassline' | 'fea' | 'handheld';
 
 export interface Project {
   id: string;
@@ -180,10 +211,10 @@ export const projects: Project[] = [
     challenge:
       '缺陷成因橫跨膠材、點膠路徑、治具干涉與視覺對位，需要在不延誤出貨的前提下逐一找出根因，並防止同類問題在下一代產品重演。',
     solution:
-      '以 8D 追查根因並升級治具設計，建立「點膠治具設計準則」作為 PUR 製程的失效預防規範；同步評估新膠材並以 ELOT 驗證黏著強度，再導入新一代 PUR 4.0 設備。',
+      '以 8D 追查根因並升級治具設計，建立「點膠治具設計準則」作為 PUR 製程的失效預防規範；解決 Forerunner 溢膠問題，同步評估新膠材並以 ELOT 驗證黏著強度，再導入新一代 PUR 4.0 設備。',
     results: [
       { value: '100%', label: 'Forerunner 55 良率（原 97%）' },
-      { value: '+12%', label: '新 PUR 膠材黏著力' },
+      { value: '−13%', label: 'Forerunner 溢膠不良率' },
       { value: '150%', label: 'PUR 4.0 設備 ROI' },
     ],
   },
@@ -192,66 +223,86 @@ export const projects: Project[] = [
     title: 'LOCA 光學貼合',
     subtitle: '蓋板玻璃與 LCM 全貼合製程',
     category: 'Garmin・戶外產品',
-    year: '2022 — 2024',
+    year: '2021 — 至今',
     cover: 'bonding',
     role: '製程開發',
     stack: ['LOCA', 'Optical Bonding', 'UV Curing', '8D'],
     background:
       '戶外與健身產品需要在強光下保持清晰可讀，蓋板玻璃與顯示模組（LCM）之間採用液態光學膠（LOCA）全貼合。',
     challenge:
-      'InReach Messenger 出現 LOCA 溢漏，Lily 2 則有膠材未完全固化的問題，同時需要降低 Venu 3 的貼合成本。',
+      'InReach 系列出現 LOCA 溢漏，Lily 2 則有膠材未完全固化的問題，同時需要降低 Venu 系列的貼合成本。',
     solution:
-      '重新定義點膠量與擋牆設計以控制溢漏，調整 UV 固化條件與遮光區處理以解決未固化，並比較 PUR 與 LOCA 方案，為 Venu 3 選出成本最佳的貼合方式。',
+      '重新定義點膠量與擋牆設計以控制溢漏，調整 UV 固化條件與遮光區處理以解決未固化，並比較 PUR 與 LOCA 方案，為 Venu 選出成本最佳的貼合方式。',
     results: [
       { value: '+22.5%', label: 'InReach 良率提升' },
       { value: '17.5%', label: 'Lily 2 未固化問題改善' },
-      { value: '−6.7%', label: 'Venu 3 貼合成本' },
+      { value: '−6.7%', label: 'Venu 貼合成本' },
+    ],
+  },
+  {
+    id: 'handheld-guideline',
+    title: '手持產品設計準則',
+    subtitle: '在設計初期導入量產經驗',
+    category: 'Garmin・手持與航空',
+    year: '2021 — 至今',
+    cover: 'handheld',
+    role: 'NPI 工程師',
+    stack: ['DFM', 'Design Guideline', 'Universal Slot', 'Confluence'],
+    background:
+      'Foretrex、Xero、eTrex 等手持產品的防水失效與溢膠風險，過去常在試產後才被發現，修改設計的代價很高。',
+    challenge:
+      '研發在設計初期缺少製程端的具體建議，產線的單位面積產能也受限於各產品專用的載具。',
+    solution:
+      '整理歷代量產問題，建立手持產品設計準則，供設計初期跨部門討論；以通用槽位設計讓不同產品共用載具，並將文件發布在 Confluence 上推動製程標準化。',
+    results: [
+      { value: '+66%', label: '單位面積產能' },
+      { value: '3 系列', label: '導入準則（Foretrex・Xero・eTrex）' },
+      { value: '4 類', label: 'NPI 產品線（健身・戶外・航空・手持）' },
     ],
   },
   {
     id: 'corning-ags',
     title: '車用玻璃新產線',
-    subtitle: 'Corning AGS 玻璃後加工設備導入',
-    category: 'Corning・車用玻璃',
+    subtitle: 'Corning 玻璃製程設備與載具導入',
+    category: 'Corning・玻璃製程',
     year: '2017 — 2020',
     cover: 'glassline',
     role: '製程設備工程師',
-    stack: ['Cleaning Process', 'Surface Treatment', 'CAE', 'FAT / SAT'],
+    stack: ['Cleaning Process', 'Surface Treatment', 'ANSYS', 'Abaqus', 'FAT / SAT'],
     background:
-      'Corning 車用玻璃事業（AGS）要在亞洲建立車用內裝蓋板的新產線，涵蓋清洗與表面處理等後加工製程。',
+      'Corning 車用玻璃事業（AGS）要在亞洲建立車用內裝蓋板的新產線，涵蓋清洗與表面處理等後加工製程；同時，各廠區的鏡片與大片玻璃也需要新的載具與治具。',
     challenge:
-      '設備供應商分散在捷克、中國與新加坡，需在有限時程內完成設計審查、驗收與製程驗證，並讓良率在量產時達標。',
+      '設備供應商分布在捷克、中國、韓國與新加坡，需在時程內完成設計審查、驗收與製程驗證；大長寬比玻璃與滿載機械手臂也需要確認結構安全。',
     solution:
-      '定義新製程流程與設備規格，主導 SOW、RFQ、FAT 與 SAT；以 CAE 評估新卡匣的結構強度與撓曲（安全係數 > 1.5），並重新設計治具與載具。',
+      '主導 SOW、RFQ、設計審查、FAT、SAT 與製程驗證，並於 2018–2020 年將新技術設備導入合肥廠；以 CAE 評估卡匣撓曲、支撐點與機械手臂掛鉤強度，設計 Varioptic 鏡片載具、通用卡匣與 Gen 8.5 大片玻璃搬運治具。',
     results: [
       { value: 'US$160M', label: '新產線投資規模' },
       { value: '> 90%', label: '表面處理良率' },
-      { value: '−18%', label: '治具與載具重量' },
+      { value: '−18%', label: 'Varioptic 鏡片載具重量' },
     ],
   },
   {
     id: 'adapter-cae',
-    title: '變壓器結構模擬',
-    subtitle: 'Lenovo 45W 變壓器機構件開發',
+    title: '變壓器開發與模擬',
+    subtitle: '群光電能電源產品機構與 CAE',
     category: '群光電能・電源產品',
     year: '2013 — 2017',
     cover: 'fea',
-    role: '機構工程師・CAE 工程師',
-    stack: ['Abaqus', 'SolidWorks', 'AutoCAD', 'Drop Test'],
+    role: 'CAE 工程師 → 量產機構工程師',
+    stack: ['Abaqus', 'SolidWorks', 'AutoCAD', '超音波熔接', 'Material Test System'],
     background:
       '筆電變壓器在運輸與使用中常遭受落摔與撞擊，外殼與內部元件必須同時兼顧強度、散熱與成本。',
     challenge:
-      '實體測試需要打樣，週期長、成本高；研發希望在設計階段就能預測落球、落摔與接觸力的結果。',
+      '實體測試需要打樣，週期長、成本高；研發希望在設計階段就能預測落球、落摔、熔接與接觸力的表現，並順利在中國廠量產。',
     solution:
-      '以 Abaqus 建立落球、落摔與電子產品接觸力模擬，回饋外殼材料與結構設計；同時完成外殼、散熱片、屏蔽板與線材的 2D／3D 量產圖。',
+      '以 Abaqus 建立落球、落摔、超音波熔接、接觸力、橡膠按鍵力行程等模擬回饋研發；轉任量產機構後，開發 Lenovo 45W 等變壓器的外殼、散熱片、屏蔽板與線材，並管理 BOM 與模具廠溝通。',
     results: [
-      { value: '3 項', label: '可靠度測試模擬' },
-      { value: '45W', label: 'Lenovo 變壓器量產' },
-      { value: '4 類', label: '機構件量產圖面' },
+      { value: '7 類', label: 'CAE 模擬項目' },
+      { value: 'EVT → MP', label: '中國廠量產導入' },
+      { value: '4 類', label: '變壓器機構件' },
     ],
   },
 ];
-
 /* ---------------- Insights ---------------- */
 
 export const articleCategories = ['全部', '製程技術', '品質管理', '產業觀察', '職涯心得'] as const;

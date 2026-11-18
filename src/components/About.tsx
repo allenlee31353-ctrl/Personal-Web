@@ -97,6 +97,15 @@ export function About() {
                     <p className="mt-1 text-[18px] font-semibold tracking-tight text-ink">{e.title}</p>
                     <p className="text-[15px] text-ink/70">{e.org}</p>
                     <p className="mt-2 max-w-md text-[15px] leading-relaxed text-muted">{e.text}</p>
+                    {e.highlights && (
+                      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label={`${e.title} 重點成果`}>
+                        {e.highlights.map((h) => (
+                          <li key={h} className="rounded-full bg-elevated px-2.5 py-1 text-[12px] font-medium text-ink/75 ring-1 ring-line/60">
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                 </Reveal>
               ))}
             </ol>
