@@ -11,7 +11,7 @@ export const profile = {
   initials: 'AL',
   role: 'NPI Advanced Engineer',
   company: 'Garmin Asia',
-  location: '桃園，台灣',
+  location: '新北汐止，台灣',
   email: 'allenlee31353@hotmail.com',
   avatar: 'avatar.jpg',
   availability: '歡迎交流製程開發與 NPI 合作',
@@ -71,7 +71,7 @@ export const experience: Experience[] = [
   {
     period: '2025.06 — 至今',
     title: 'NPI Advanced Engineer',
-    org: 'Garmin Asia｜桃園',
+    org: 'Garmin Asia｜新北汐止',
     text: '帶領 Instinct 系列手錶的製程開發專案，指導新進工程師獨立執行製程，並推動製程能力提升與標準化。',
     highlights: ['Instinct 系列製程開發', '新進工程師指導', 'Confluence 製程標準化'],
   },
