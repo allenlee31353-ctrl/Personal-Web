@@ -196,6 +196,20 @@ export interface Project {
   challenge: string;
   solution: string;
   results: { value: string; label: string }[];
+  /** Optional simulation case studies, each rendered with its own animation. */
+  simulations?: Simulation[];
+}
+
+export type SimulationKind = 'contact' | 'drop' | 'acinlet' | 'validation' | 'weld' | 'screw' | 'spring';
+
+export interface Simulation {
+  kind: SimulationKind;
+  title: string;
+  product: string;
+  setup: string;
+  finding: string;
+  outcome: string;
+  metrics?: { value: string; label: string }[];
 }
 
 export const projects: Project[] = [
@@ -335,15 +349,99 @@ export const projects: Project[] = [
     role: 'CAE 工程師 → 量產機構工程師',
     stack: ['Abaqus', 'SolidWorks', 'AutoCAD', '超音波熔接', 'Material Test System'],
     background:
-      '筆電變壓器在運輸與使用中常遭受落摔與撞擊，外殼與內部元件必須同時兼顧強度、散熱與成本。',
+      '變壓器、充電器與照明產品在運輸與使用中常遭受落摔、撞擊與反覆組裝，外殼與內部元件必須同時兼顧強度、接觸可靠度與成本。',
     challenge:
-      '實體測試需要打樣，週期長、成本高；研發希望在設計階段就能預測落球、落摔、熔接與接觸力的表現，並順利在中國廠量產。',
+      '實體測試需要打樣，週期長、成本高；研發希望在設計階段就能預測落球、落摔、熔接、鎖附與接觸力的表現，並順利在中國廠量產。',
     solution:
-      '以 Abaqus 建立落球、落摔、超音波熔接、接觸力、橡膠按鍵力行程等模擬回饋研發；轉任量產機構後，開發 Lenovo 45W 等變壓器的外殼、散熱片、屏蔽板與線材，並管理 BOM 與模具廠溝通。',
+      '建立「機構設計 → CAE 驗證 → 回饋研發 → 設計定案」的流程，以 Abaqus 模擬接觸力、落摔、落球、超音波熔接線強度、鎖螺絲與彈簧力，並用實測結果校正模型；轉任量產機構後，開發 Lenovo 45W 等變壓器的外殼、散熱片、屏蔽板與線材，管理 BOM 並與模具廠溝通。',
     results: [
-      { value: '7 類', label: 'CAE 模擬項目' },
-      { value: 'EVT → MP', label: '中國廠量產導入' },
-      { value: '4 類', label: '變壓器機構件' },
+      { value: '−17.3%', label: '嵌燈彈簧單價' },
+      { value: 'Fail → Pass', label: '鎖螺絲結構（導角方案）' },
+      { value: '7 個', label: '模擬案例，與實測交叉驗證' },
+    ],
+    simulations: [
+      {
+        kind: 'contact',
+        title: '旋轉插頭接觸力',
+        product: 'Rotatable plug',
+        setup: '以 CAD 與材料性質建立兩組接觸彈片（Spring 1 / Spring 2）模型，模擬插頭旋轉過程的接觸力變化。',
+        finding: '接觸力需高於約 45 g，接觸電阻才會進入穩定區（約 5 mΩ）；低於 10 g 時膜電阻效應使電阻急遽上升。',
+        outcome: '模擬峰值接觸力約 920 g 與 740 g，皆落在穩定區，判定接觸電阻合格後才進入設計定案；不合格則回饋研發修改。',
+        metrics: [
+          { value: '≈ 920 g', label: 'Spring 1 峰值' },
+          { value: '≈ 740 g', label: 'Spring 2 峰值' },
+          { value: '> 45 g', label: '穩定接觸門檻' },
+        ],
+      },
+      {
+        kind: 'drop',
+        title: '充電器落摔',
+        product: 'Charger',
+        setup: '模擬充電器自由落下撞擊地面，觀察外殼與內部肋條的應力分布。',
+        finding: '撞擊後應力集中在內部肋條區域，出現破壞。',
+        outcome: '在打樣前標出肋條的破壞位置，作為研發補強設計的依據。',
+        metrics: [{ value: '肋條區', label: '破壞位置' }],
+      },
+      {
+        kind: 'acinlet',
+        title: 'AC 插座落球比較',
+        product: 'Adapter・AC inlet',
+        setup: '500 g 鋼球自 1.3 m 落下，撞擊靠近 AC 插座的上表面；外殼材料 PC，底部固定。比較直角與圓角兩種插座外型。',
+        finding: '直角外型在插座轉角產生應力集中，導致破壞；圓角外型的高應力分散開來，數值也較低。',
+        outcome: '建議採用圓角插座設計，以結構外型而非加厚材料解決落球破壞。',
+        metrics: [
+          { value: '500 g', label: '鋼球重量' },
+          { value: '1.3 m', label: '落下高度' },
+          { value: '圓角', label: '建議外型（無破壞）' },
+        ],
+      },
+      {
+        kind: 'validation',
+        title: '落球模擬與實測驗證',
+        product: 'Dell 30W・Charger bobbin',
+        setup: '以相同落球條件模擬 Dell 30W 變壓器，並比較充電器骨架（bobbin）原始與加肋修改設計。',
+        finding: '模擬出現的破壞區域與實際產品裂痕位置相同，證明模型可用於預測。',
+        outcome: '以驗證過的模型評估加肋設計，在打樣前比較原始與修改方案的應力分布。',
+        metrics: [{ value: '一致', label: '模擬與實測裂痕位置' }],
+      },
+      {
+        kind: 'weld',
+        title: '超音波熔接線強度',
+        product: 'Adapter・ultrasonic welding line',
+        setup: '先以拉伸試驗取得熔接線的材料數據，輸入模擬後重現拉伸曲線，再進行落球分析。',
+        finding: '模擬拉伸曲線在約 3 mm 位移時斷裂；落球模擬重現了實際產品的熔接線斷裂（breakage）與脫開（breakout）。',
+        outcome: '建立「實驗數據 → 模擬 → 與實況比對」的方法，讓熔接設計能在模擬中先驗證。',
+        metrics: [
+          { value: '≈ 1.4 kN', label: '模擬拉伸峰值' },
+          { value: '≈ 3 mm', label: '斷裂位移' },
+        ],
+      },
+      {
+        kind: 'screw',
+        title: '鎖螺絲結構',
+        product: 'CO₂ sensor',
+        setup: '模擬螺絲鎖入外殼螺柱時的應力，比較原始設計、方案一（加導角）與方案二（加高鎖孔厚度）。',
+        finding: '原始設計在螺絲頭下方轉角應力集中；導角增加螺絲接觸面積、分散應力；加厚雖提高結構強度仍未通過。',
+        outcome: '方案一（導角）通過，為最佳改善方式。',
+        metrics: [
+          { value: 'Fail', label: '原始設計' },
+          { value: 'Pass', label: '方案一：導角' },
+          { value: 'Fail', label: '方案二：加厚' },
+        ],
+      },
+      {
+        kind: 'spring',
+        title: '嵌燈彈簧力',
+        product: 'Recessed light',
+        setup: '模擬嵌燈扭力彈簧的夾持力，並以實驗檢查燈具與天花板之間的間隙。',
+        finding: '原始 52 mm 彈簧臂在實驗中間隙不合格；縮短為 40 mm 的新設計通過間隙檢查。',
+        outcome: '新設計彈簧體積從 896.16 mm³ 降到 835.08 mm³，單價降低 17.3%。',
+        metrics: [
+          { value: '52 → 40 mm', label: '彈簧臂長度' },
+          { value: 'Fail → Pass', label: '間隙檢查' },
+          { value: '−17.3%', label: '單價成本' },
+        ],
+      },
     ],
   },
 ];

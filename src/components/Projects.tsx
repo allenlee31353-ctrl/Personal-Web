@@ -6,6 +6,7 @@ import { fadeUp } from '../lib/motion';
 import { Modal } from './Modal';
 import { ProjectCover, coverTheme } from './ProjectCover';
 import { RevealGroup } from './Reveal';
+import { SimulationViewer } from './SimulationViewer';
 import { SectionHeading } from './SectionHeading';
 
 function ProjectCard({
@@ -146,6 +147,8 @@ function ProjectDetail({ project, onNav }: { project: Project; onNav: (dir: 1 | 
             ))}
           </dl>
         </section>
+
+        {project.simulations && <SimulationViewer simulations={project.simulations} />}
 
         <nav className="mt-10 flex items-center justify-between gap-4" aria-label="切換專案">
           <button type="button" onClick={() => onNav(-1)} className="btn-ghost !px-5">
