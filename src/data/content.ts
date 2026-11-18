@@ -316,7 +316,7 @@ export interface ImpactItem {
 }
 
 export const impactNote =
-  '2021–2026 年在 Garmin 的量化成果。2024 年僅含年中報告，2025 年列出晉升里程碑、量化成果尚未納入；各項指標單位不同，請分別解讀、不互相比較。';
+  '2021–2026 年在 Garmin 的量化成果。2024 年僅含年中報告，2025 年列出晉升里程碑；各項指標單位不同，請分別解讀、不互相比較。';
 
 export const impactKpis = [
   { label: '2023 PUR 自動化預期效益', value: '5 人力', note: '0.035 man·hr/pcs；0.409 USD/pcs' },
@@ -363,7 +363,7 @@ export const impactYears: { year: string; note?: string; items: ImpactItem[] }[]
         value: '晉升',
         label: 'NPI Advanced Engineer',
         product: 'Garmin Asia',
-        detail: '2025 年 6 月起帶領 Instinct 系列製程開發，並指導新進工程師。量化成果尚未納入。',
+        detail: '2025 年 6 月起帶領 Instinct 系列製程開發，並指導新進工程師。',
       },
     ],
   },
