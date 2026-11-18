@@ -11,6 +11,8 @@ export const coverTheme: Record<CoverVariant, { bg: string; dark: boolean }> = {
   glassline: { bg: '#E9EEF2', dark: false },
   fea: { bg: '#0A1424', dark: true },
   handheld: { bg: '#EEF0EC', dark: false },
+  artwork: { bg: '#0B0B0E', dark: true },
+  standard: { bg: '#F2F2F4', dark: false },
 };
 
 function Watch() {
@@ -260,7 +262,84 @@ function Handheld() {
   );
 }
 
-const art: Record<CoverVariant, () => JSX.Element> = { watch: Watch, bonding: Bonding, glassline: GlassLine, fea: Fea, handheld: Handheld };
+function Artwork() {
+  // A plain lens (no printed ticks) aligned by a sticker fiducial under a CCD crosshair.
+  return (
+    <>
+      <defs>
+        <radialGradient id="aw-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#2997FF" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#2997FF" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="600" height="360" fill="url(#aw-glow)" />
+      {/* bezel + lens */}
+      <circle cx="300" cy="180" r="124" fill="#2a2a2e" />
+      <circle cx="300" cy="180" r="116" fill="none" stroke="#0071E3" strokeWidth="3" strokeDasharray="1 6" strokeLinecap="round" />
+      <circle cx="300" cy="180" r="108" fill="#111114" />
+      {/* sticker with alignment marks */}
+      <circle cx="300" cy="180" r="96" fill="none" stroke="#fff" strokeOpacity="0.35" strokeWidth="10" />
+      <g stroke="#fff" strokeWidth="2">
+        <line x1="300" y1="78" x2="300" y2="98" />
+        <line x1="290" y1="88" x2="310" y2="88" />
+        <line x1="300" y1="262" x2="300" y2="282" />
+      </g>
+      {/* CCD crosshair */}
+      <g stroke="#2997FF" strokeWidth="1.5" fill="none">
+        <circle cx="300" cy="88" r="16" />
+        <line x1="300" y1="60" x2="300" y2="116" strokeDasharray="3 3" />
+        <line x1="272" y1="88" x2="328" y2="88" strokeDasharray="3 3" />
+      </g>
+      <g fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" textAnchor="middle">
+        <text x="352" y="66" fill="#2997FF" textAnchor="start">CCD fiducial</text>
+        <text x="300" y="332" fill="#fff" fillOpacity="0.85">No lens artwork · Cpk 2.72</text>
+      </g>
+    </>
+  );
+}
+
+function Standard() {
+  // A process checklist card plus a continuous-improvement loop.
+  const rows = ['Dispensing', 'Iring press', 'LOCA bonding', 'RTV injection', 'Soldering', 'Cleaning', 'ACF pressing', 'FPC bonding', 'Screwing'];
+  return (
+    <>
+      <rect x="150" y="34" width="250" height="292" rx="18" fill="#ffffff" stroke="#1D1D1F" strokeOpacity="0.08" />
+      <text x="174" y="66" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="#1D1D1F">Process checklist · CR</text>
+      {rows.map((r, i) => (
+        <g key={r} transform={`translate(174 ${86 + i * 25})`}>
+          <rect width="14" height="14" rx="4" fill={i === 0 || i === 2 ? '#0071E3' : '#E8E8ED'} />
+          {(i === 0 || i === 2) && <path d="M3.5 7.5 l2.5 2.5 l4.5 -5" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />}
+          <text x="24" y="11.5" fontFamily="Inter, sans-serif" fontSize="11.5" fill="#1D1D1F" fillOpacity={i === 0 || i === 2 ? 1 : 0.6}>
+            {String(i + 1).padStart(2, '0')}  {r}
+          </text>
+        </g>
+      ))}
+      {/* improvement loop */}
+      <g transform="translate(470 180)">
+        <circle r="62" fill="none" stroke="#1D1D1F" strokeOpacity="0.1" strokeWidth="12" />
+        <path d="M0 -62 A62 62 0 1 1 -58 22" fill="none" stroke="#0071E3" strokeWidth="12" strokeLinecap="round" />
+        <text textAnchor="middle" y="-4" fontFamily="Inter, sans-serif" fontSize="22" fontWeight="600" fill="#1D1D1F">60%</text>
+        <text textAnchor="middle" y="14" fontFamily="Inter, sans-serif" fontSize="10" fill="#86868B">guideline</text>
+      </g>
+      <g fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#1D1D1F">
+        <text x="40" y="140">Mentees</text>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <circle key={i} cx={52 + (i % 3) * 30} cy={164 + Math.floor(i / 3) * 30} r="11" fill="#0071E3" fillOpacity={0.25 + i * 0.12} />
+        ))}
+      </g>
+    </>
+  );
+}
+
+const art: Record<CoverVariant, () => JSX.Element> = {
+  watch: Watch,
+  bonding: Bonding,
+  glassline: GlassLine,
+  fea: Fea,
+  handheld: Handheld,
+  artwork: Artwork,
+  standard: Standard,
+};
 
 export const ProjectCover = memo(function ProjectCover({ variant, title }: { variant: CoverVariant; title: string }) {
   const Art = art[variant];

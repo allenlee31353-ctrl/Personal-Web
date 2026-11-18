@@ -50,7 +50,8 @@ export const stats = [
 
 export const aboutParagraphs = [
   '我在國立中央大學完成機械工程學士與碩士。畢業後在群光電能先擔任 CAE 工程師，以 Abaqus 預測落球、落摔與超音波熔接等設計表現；之後轉任量產機構工程師，在中國廠完成 EVT、DVT、PVT 到 MP 的導入。',
-  '接著我加入康寧（Corning）亞洲區，負責玻璃製程設備與載具設計，與捷克、中國、韓國與新加坡的供應商合作，主導 1.6 億美元的車用玻璃新產線。2021 年起在 Garmin Asia 擔任 NPI 工程師，2025 年晉升為 NPI Advanced Engineer，帶領健身、戶外、航空與手持產品從開發走進量產，並指導新進工程師獨立執行製程。',
+  '接著我加入康寧（Corning）亞洲區，負責玻璃製程設備與載具設計，與捷克、中國、韓國與新加坡的供應商合作，主導 1.6 億美元的車用玻璃新產線。',
+  '2021 年我加入 Garmin Asia，從 NPI 製程工程師 I 做起，2022 年升任 II，2023 年擔任 NPI 專案負責人，2024 年起兼任 Mentor。四年間完成 10 款產品上市，其中 8 款達成 QCD 目標。2025 年通過晉升審查成為 Advanced Engineer I，並由無塵室製程輪調至組裝製程，用更完整的系統視角整合新產品開發。',
 ];
 
 export const values = [
@@ -70,17 +71,17 @@ export interface Experience {
 export const experience: Experience[] = [
   {
     period: '2025.06 — 至今',
-    title: 'NPI Advanced Engineer',
+    title: 'NPI Advanced Engineer I',
     org: 'Garmin Asia｜新北汐止',
-    text: '帶領 Instinct 系列手錶的製程開發專案，指導新進工程師獨立執行製程，並推動製程能力提升與標準化。',
-    highlights: ['Instinct 系列製程開發', '新進工程師指導', 'Confluence 製程標準化'],
+    text: '2025 年 5 月通過晉升審查。由無塵室（CR）製程輪調至組裝（ASSY）製程，跨製程整合新產品開發，並負責準則建立、PUR 4.0 新設備導入與新人培訓。',
+    highlights: ['CR → ASSY 職務輪調', 'PUR 4.0 新設備導入', '指導 5 位工程師與實習生'],
   },
   {
     period: '2021.03 — 2025.06',
-    title: 'NPI Engineer II / Project Lead',
+    title: 'NPI Process Engineer I → II → Project Lead',
     org: 'Garmin Asia・亞洲製造與營運｜桃園',
-    text: '開發鏡片與錶圈 PUR 黏著、蓋板玻璃與 LCM 的 LOCA 光學貼合製程，帶領 Forerunner、Venu、InReach、Lily 2 等健身、戶外、航空與手持產品導入量產。',
-    highlights: ['Forerunner 55 良率 97% → 100%', 'InReach 良率 +22.5%', 'Venu 貼合成本 −6.7%', '通用槽位產能 +66%'],
+    text: '2021 年任 NPI 製程工程師 I，2022 年升任 II，2023 年起擔任 NPI 專案負責人（Instinct 3 系列團隊管理），2024 年起兼任 Mentor。開發 PUR 黏著與 LOCA 光學貼合製程，帶領健身、戶外、航空與手持產品導入量產。',
+    highlights: ['10 款產品上市', '8 款達成 QCD', 'Forerunner 55 良率 97% → 100%', 'InReach 良率 +22.5%'],
   },
   {
     period: '2017.06 — 2020.04',
@@ -174,13 +175,13 @@ export const expertise: Expertise[] = [
 export const toolkit = [
   { label: 'CAD', items: ['SolidWorks', 'AutoCAD', 'DraftSight'] },
   { label: 'CAE', items: ['Abaqus', 'ANSYS', 'ANSYS Fluent', 'LS-DYNA'] },
-  { label: '品質與數據', items: ['Minitab (SPC)', 'PFMEA', '8D', 'Origin', 'Material Test System'] },
-  { label: '協作', items: ['Confluence', 'Microsoft Office', 'Adobe Acrobat'] },
+  { label: '製程與品質', items: ['Glue Dispensing', 'Fixture Design', 'DFM', 'PFMEA', '8D', 'Minitab (SPC / Cpk)'] },
+  { label: '管理與協作', items: ['Project / Team Management', 'Risk Assessment', 'Mentoring', 'Confluence', 'Microsoft Office'] },
 ];
 
 /* ---------------- Projects ---------------- */
 
-export type CoverVariant = 'watch' | 'bonding' | 'glassline' | 'fea' | 'handheld';
+export type CoverVariant = 'watch' | 'bonding' | 'glassline' | 'fea' | 'handheld' | 'artwork' | 'standard';
 
 export interface Project {
   id: string;
@@ -198,6 +199,27 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 'pur40-no-artwork',
+    title: 'PUR 4.0 無印刷鏡片對位',
+    subtitle: 'Venu 4 系列新一代點膠設備升級',
+    category: 'Garmin・新設備導入',
+    year: '2023 — 2025',
+    cover: 'artwork',
+    role: '專案負責人・設備導入',
+    stack: ['PUR 4.0', 'CCD Fiducial Alignment', 'Tip Finder', 'Minitab Cpk'],
+    background:
+      '新產品策略取消鏡片上的裝飾印刷（刻度與文字），省去 ID 調色作業。少了印刷對位記號，既有的 PUR 3.0 設備無法再以鏡片圖案對位點膠。',
+    challenge:
+      '必須在不影響外觀的前提下建立新的對位基準，同時改善 3.0 機台的點膠針頭，並依 WP、FP、FFP、PR 各試產階段如期導入。',
+    solution:
+      '2023 年 5 月啟動，提出 Plan A：在鏡片貼上帶對位記號的貼紙，沿用現有對位設備；並為新機台加入 CCD 基準點對位、缺膠檢測與針頭定位（Tip finder）。經三輪原型驗證後於 2024 年 6 月導入，2025 年 1 月完成 Venu 4 FFP 試產。',
+    results: [
+      { value: '330%', label: '預期 ROI' },
+      { value: 'Cpk 2.72', label: 'PUR 對位製程能力' },
+      { value: '2025.07', label: 'Venu 4 / Bounce 2 量產導入' },
+    ],
+  },
   {
     id: 'pur-bonding',
     title: 'PUR 黏著製程革新',
@@ -262,6 +284,27 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'process-standardization',
+    title: '製程標準化與人才培育',
+    subtitle: '把個人經驗變成團隊能力',
+    category: 'Garmin・知識管理',
+    year: '2022 — 2025',
+    cover: 'standard',
+    role: 'NPI 專案負責人・Mentor',
+    stack: ['Process Checklist', 'DFM Guideline', 'Lessons Learned', 'Confluence', 'Mentoring'],
+    background:
+      '無塵室製程的關鍵知識多半留在資深工程師身上，新人上手慢，同樣的問題也可能在不同專案重複發生。',
+    challenge:
+      '要讓知識可以被搜尋、被複製，並讓新進工程師在實際專案中獨立負責製程，而不是只靠口頭傳承。',
+    solution:
+      '與同事共同建立 9 項標準化製程檢核表（我負責點膠與 LOCA 貼合）；在 Confluence 發布手持產品、PUR 製程、推出力測試治具等 DFM 準則，以及鏡片膠污染、inReach LOCA 溢漏、Forerunner 265 ELOT 失效等經驗回顧；並指導 5 位工程師與實習生負責 Instinct、Bounce 2、Xero C2 等專案。',
+    results: [
+      { value: '9 項', label: '標準化製程檢核表' },
+      { value: '60%', label: '準則導入率' },
+      { value: '5 位', label: '指導工程師與實習生' },
+    ],
+  },
+  {
     id: 'corning-ags',
     title: '車用玻璃新產線',
     subtitle: 'Corning 玻璃製程設備與載具導入',
@@ -318,6 +361,20 @@ export interface ImpactItem {
 export const impactNote =
   '2021–2026 年在 Garmin 的量化成果。2024 年僅含年中報告，2025 年列出晉升里程碑；各項指標單位不同，請分別解讀、不互相比較。';
 
+/** NPI dashboard from the 2025 promotion review (2021–2025). */
+export const npiDashboard = {
+  launches: 10,
+  qcdMet: 8,
+  guidelineRate: '60%',
+  qcdCriteria: ['首次良率 FYR > 99.7%', '維修率 < 3%', '人力成本 |PR − MP| < 5%'],
+  portfolio: [
+    { label: 'Fitness', share: 40, items: ['Forerunner 265', 'Forerunner 570 / 970', 'Lily 2', 'Venu 3', 'Venu 4L / 4S'] },
+    { label: 'Outdoor', share: 30, items: ['Foretrex 801 / 901', 'Xero C1 / C2', 'inReach Messenger / Plus', 'Instinct 3 系列'] },
+    { label: 'Project', share: 20, items: ['新 PUR 膠材驗證計畫', 'PUR 3.0 → 4.0 設備升級', '無塵室製程標準化'] },
+    { label: 'Guideline', share: 10, items: ['點膠治具設計準則', '手持產品設計準則'] },
+  ],
+};
+
 export const impactKpis = [
   { label: '2023 PUR 自動化預期效益', value: '5 人力', note: '0.035 man·hr/pcs；0.409 USD/pcs' },
   { label: '2023 FR265 帶動', value: '+130%', note: 'Fitness 營收成長（報告所述）' },
@@ -363,8 +420,10 @@ export const impactYears: { year: string; note?: string; items: ImpactItem[] }[]
         value: '晉升',
         label: 'NPI Advanced Engineer',
         product: 'Garmin Asia',
-        detail: '2025 年 6 月起帶領 Instinct 系列製程開發，並指導新進工程師。',
+        detail: '5 月通過 Advanced Engineer I 晉升審查，6 月起生效。',
       },
+      { value: 'CR → ASSY', label: '職務輪調，跨製程整合', product: '組裝製程' },
+      { value: 'Cpk 2.72', label: 'PUR 4.0 對位製程能力', product: 'Venu 4L / 4S' },
     ],
   },
   {
@@ -393,6 +452,20 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  {
+    id: 'no-lens-artwork',
+    title: '當鏡片上沒有刻度：無印刷鏡片的對位挑戰',
+    excerpt: '設計少了一道印刷，製程就少了一個對位基準。我們花了兩年，用一張貼紙和新的 CCD 找回它。',
+    category: '製程技術',
+    date: '2025-07-15',
+    readTime: 7,
+    body: [
+      '新一代手錶取消了鏡片上的刻度與文字印刷，外觀更乾淨，也省去調色作業。但對製程來說，PUR 點膠機原本就是靠這些印刷圖案來對位鏡片與錶圈。',
+      '我們在 2023 年 5 月開始討論，最後選擇 Plan A：先在鏡片背面貼上帶對位記號的貼紙，讓現有的貼合設備能繼續對位；新一代 PUR 4.0 機台則加入 CCD 基準點對位、缺膠檢測與針頭定位功能。',
+      '經過三輪原型與 WP、FP、FFP 試產，貼紙貼附製程的 Cpk 達 19.09，PUR 對位的 Cpk 達 2.72。設備在 2024 年 6 月導入，2025 年 1 月完成 Venu 4 FFP 試產，並規劃 2025 年 7 月量產。',
+      '這個專案讓我更確定一件事：外觀設計的每一個決定，都會在產線上找到對應的代價。NPI 工程師的工作，就是越早把這個代價說清楚。',
+    ],
+  },
   {
     id: 'pur-vs-loca',
     title: 'PUR 還是 LOCA？穿戴裝置貼合製程的選擇',

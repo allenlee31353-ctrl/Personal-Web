@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { impactKpis, impactNote, impactYears } from '../data/content';
+import { impactKpis, impactNote, impactYears, npiDashboard } from '../data/content';
 import { fadeUp } from '../lib/motion';
 import { Reveal, RevealGroup } from './Reveal';
 
@@ -40,6 +40,63 @@ export function Impact() {
             </motion.div>
           ))}
         </RevealGroup>
+
+        {/* NPI dashboard 2021–2025 */}
+        <Reveal className="mt-16 rounded-[28px] bg-white/[0.04] p-6 ring-1 ring-white/10 sm:p-10 md:mt-20">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 className="text-[21px] font-semibold tracking-tight">NPI 儀表板 2021–2025</h3>
+            <p className="text-[13px] text-white/50">資料來源：2025 年晉升審查報告</p>
+          </div>
+          <dl className="mt-8 grid gap-8 sm:grid-cols-3">
+            <div>
+              <dt className="text-[13px] text-white/55">產品上市</dt>
+              <dd className="mt-2 text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-tightest tabular-nums">
+                {npiDashboard.launches}
+                <span className="ml-1 text-[17px] font-medium tracking-normal text-white/60">款</span>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[13px] text-white/55">達成 QCD 目標</dt>
+              <dd className="mt-2 text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-tightest tabular-nums">
+                {npiDashboard.qcdMet}
+                <span className="ml-1 text-[17px] font-medium tracking-normal text-white/60">/ {npiDashboard.launches} 款</span>
+              </dd>
+              <dd className="mt-3 text-[13px] leading-relaxed text-white/55">{npiDashboard.qcdCriteria.join('・')}</dd>
+            </div>
+            <div>
+              <dt className="text-[13px] text-white/55">準則導入率</dt>
+              <dd className="mt-2 text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-tightest tabular-nums">
+                {npiDashboard.guidelineRate}
+              </dd>
+              <dd className="mt-3 text-[13px] leading-relaxed text-white/55">點膠製程・手持產品製程</dd>
+            </div>
+          </dl>
+
+          <h4 className="mt-10 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/55">工作組成</h4>
+          {/* one 100% bar: all segments share the same unit, so lengths are comparable */}
+          <div className="mt-4 flex h-3 w-full gap-[2px] overflow-hidden rounded-full" role="img" aria-label={npiDashboard.portfolio.map((p) => `${p.label} ${p.share}%`).join('，')}>
+            {npiDashboard.portfolio.map((p, i) => (
+              <div
+                key={p.label}
+                className="h-full bg-[#2997FF]"
+                style={{ width: `${p.share}%`, opacity: 1 - i * 0.22 }}
+                title={`${p.label} ${p.share}%`}
+              />
+            ))}
+          </div>
+          <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {npiDashboard.portfolio.map((p, i) => (
+              <li key={p.label} className="min-w-0">
+                <p className="flex items-center gap-2 text-[15px] font-semibold">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#2997FF]" style={{ opacity: 1 - i * 0.22 }} aria-hidden="true" />
+                  {p.label}
+                  <span className="font-normal tabular-nums text-white/55">{p.share}%</span>
+                </p>
+                <p className="mt-2 text-[13px] leading-relaxed text-white/60">{p.items.join('・')}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
         {/* year-by-year */}
         <ol className="mt-16 md:mt-24">
