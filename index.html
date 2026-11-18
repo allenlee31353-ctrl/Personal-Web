@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>林以恆 Ethan Lin — 工程師・產品設計・技術創新</title>
+    <meta name="description" content="林以恆 Ethan Lin 的個人專業網站。專注於技術研發、產品設計與工程整合，分享專案作品、產業觀察與技術文章。" />
+    <meta name="keywords" content="Ethan Lin, 林以恆, 工程師, 產品設計, 技術研發, 專案管理, Portfolio" />
+    <meta name="author" content="Ethan Lin" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="canonical" href="https://example.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content="林以恆 Ethan Lin — 用專業與創新，打造更好的科技體驗" />
+    <meta property="og:description" content="專注於技術、設計與創新，持續探索科技的更多可能。" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:image" content="https://example.com/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="林以恆 Ethan Lin" />
+    <meta name="twitter:description" content="專注於技術、設計與創新，持續探索科技的更多可能。" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ethan Lin",
+        "alternateName": "林以恆",
+        "jobTitle": "Senior Engineer & Product Designer",
+        "url": "https://example.com/",
+        "sameAs": ["https://www.linkedin.com/", "https://github.com/"]
+      }
+    </script>
+
+    <!-- Apply theme before paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <div style="padding:48px 24px;font-family:sans-serif;text-align:center">
+        林以恆 Ethan Lin — 工程師・產品設計・技術創新。請啟用 JavaScript 以瀏覽完整網站。
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
