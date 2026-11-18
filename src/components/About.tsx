@@ -16,6 +16,25 @@ export function About() {
           <div className="lg:col-span-6">
             <div className="lg:sticky lg:top-28">
               <Reveal>
+                <div className="mb-8 flex items-center gap-4">
+                  <img
+                    src={profile.avatar}
+                    alt={`${profile.name} ${profile.nameEn} 個人照`}
+                    width={72}
+                    height={72}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-[72px] w-[72px] rounded-full object-cover ring-4 ring-elevated shadow-soft"
+                  />
+                  <div>
+                    <p className="text-[17px] font-semibold tracking-tight text-ink">
+                      {profile.name} {profile.nameEn}
+                    </p>
+                    <p className="text-[14px] text-muted">
+                      {profile.role} · {profile.company}
+                    </p>
+                  </div>
+                </div>
                 <p className="eyebrow">About Me</p>
                 <h2 id="about-title" className="display-2 mt-4 text-balance">
                   把複雜的技術，
@@ -51,8 +70,8 @@ export function About() {
             <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-[28px] bg-line/70 ring-1 ring-line/70">
               {stats.map((s) => (
                 <motion.div key={s.label} variants={fadeUp} className="bg-elevated p-6 sm:p-8">
-                  <div className="text-[clamp(2.25rem,5vw,3.5rem)] font-semibold leading-none tracking-tightest text-ink">
-                    <CountUp to={s.value} suffix={s.suffix} decimals={s.decimals ?? 0} />
+                  <div className="text-[clamp(1.75rem,3.6vw,2.75rem)] font-semibold leading-none tracking-tightest text-ink">
+                    <CountUp to={s.value} prefix={s.prefix} suffix={s.suffix} />
                   </div>
                   <div className="mt-3 text-[14px] text-muted">{s.label}</div>
                 </motion.div>

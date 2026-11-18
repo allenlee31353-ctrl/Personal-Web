@@ -100,8 +100,8 @@ export function Expertise() {
           <SectionHeading
             id="expertise-title"
             eyebrow="Expertise"
-            title={'跨越軟體、硬體與設計\n的整合能力。'}
-            description="十多年來，我在不同產業與角色之間累積了完整的產品開發視野，從概念驗證到量產上市。"
+            title={'從模擬、設備到量產，\n一條龍的工程能力。'}
+            description="從電源產品、玻璃製程到穿戴裝置，我在不同產業累積了從設計驗證到量產上市的完整經驗。"
           />
           <a href="#projects" className="link-arrow shrink-0 text-[15px] md:mb-2">
             看看實際成果 <ArrowUpRight size={16} aria-hidden="true" />

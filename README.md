@@ -1,4 +1,4 @@
-# Ethan Lin — Personal Portfolio
+# Allen Lee — Personal Portfolio
 
 An Apple-inspired, minimalist personal brand site built with **React 18 + TypeScript + Vite + Tailwind CSS + Framer Motion + Lucide Icons**.
 

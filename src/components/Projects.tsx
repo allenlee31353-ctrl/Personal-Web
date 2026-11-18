@@ -52,7 +52,7 @@ function ProjectCard({
             {project.results.map((r) => (
               <div key={r.label}>
                 <dt className="sr-only">{r.label}</dt>
-                <dd className="text-[22px] font-semibold tracking-tight text-ink sm:text-[26px]">{r.value}</dd>
+                <dd className="text-[19px] font-semibold leading-tight tracking-tight text-ink sm:text-[24px]">{r.value}</dd>
                 <dd className="mt-1 text-[12px] text-muted sm:text-[13px]">{r.label}</dd>
               </div>
             ))}
@@ -178,7 +178,7 @@ export function Projects() {
           id="projects-title"
           eyebrow="Selected Work"
           title={'每一個專案，\n都是解決真實問題的旅程。'}
-          description="以下是近年參與的代表作品，橫跨 AI、物聯網、能源與醫療。點擊任一專案，了解背後的挑戰與解法。"
+          description="以下是在 Garmin、Corning 與群光電能的代表專案，橫跨穿戴裝置、車用玻璃與電源產品。點擊任一專案，了解背後的挑戰與解法。"
         />
 
         <LayoutGroup>

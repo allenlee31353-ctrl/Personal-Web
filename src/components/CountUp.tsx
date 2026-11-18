@@ -5,10 +5,11 @@ interface Props {
   to: number;
   decimals?: number;
   suffix?: string;
+  prefix?: string;
   duration?: number;
 }
 
-export function CountUp({ to, decimals = 0, suffix = '', duration = 1.8 }: Props) {
+export function CountUp({ to, decimals = 0, suffix = '', prefix = '', duration = 1.8 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
   const reduce = useReducedMotion();
@@ -26,6 +27,7 @@ export function CountUp({ to, decimals = 0, suffix = '', duration = 1.8 }: Props
 
   return (
     <span ref={ref} className="tabular-nums">
+      {prefix}
       {val.toFixed(decimals)}
       {suffix}
     </span>

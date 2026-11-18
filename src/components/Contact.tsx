@@ -27,7 +27,7 @@ function mailtoHref(f: Fields) {
   return `mailto:${profile.email}?subject=${encodeURIComponent(f.subject)}&body=${encodeURIComponent(body)}`;
 }
 
-const subjects = ['專案合作', '技術顧問', '演講邀約', '職缺機會'];
+const subjects = ['專案合作', '製程交流', '職缺機會', '演講邀約'];
 
 export function Contact() {
   const [fields, setFields] = useState<Fields>(empty);
@@ -119,7 +119,7 @@ export function Contact() {
               <br />
               值得被記住的產品。
             </h2>
-            <p className="lead mt-6 max-w-md">無論是專案合作、技術顧問或只是想交流想法，都歡迎與我聯繫。我通常會在兩個工作天內回覆。</p>
+            <p className="lead mt-6 max-w-md">無論是新產品導入、製程開發的合作，或是想交流量產經驗，都歡迎與我聯繫。</p>
           </Reveal>
 
           <Reveal delay={0.1} className="mt-10">
@@ -230,7 +230,7 @@ export function Contact() {
                       <label htmlFor="f-name" className="mb-1.5 block text-[14px] font-medium text-ink">
                         姓名
                       </label>
-                      <input type="text" autoComplete="name" placeholder="王小明" required {...field('name')} />
+                      <input type="text" autoComplete="name" placeholder="您的姓名" required {...field('name')} />
                       <Err name="name" />
                     </div>
                     <div>

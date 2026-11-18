@@ -34,9 +34,7 @@ function ArticleReader({ article }: { article: Article }) {
           ))}
         </div>
         <div className="mt-12 flex items-center gap-4 rounded-2xl bg-surface p-5">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-[14px] font-semibold text-canvas">
-            {profile.initials}
-          </span>
+          <img src={profile.avatar} alt="" width={44} height={44} loading="lazy" className="h-11 w-11 shrink-0 rounded-full object-cover" />
           <div className="text-[14px]">
             <p className="font-semibold text-ink">
               {profile.name} {profile.nameEn}

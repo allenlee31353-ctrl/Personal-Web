@@ -1,8 +1,8 @@
 import { motion, useReducedMotion, type MotionValue, useTransform } from 'framer-motion';
-import { Activity, Cpu, ShieldCheck } from 'lucide-react';
+import { Factory, Gauge, TrendingUp } from 'lucide-react';
 
 /**
- * Abstract "system" composition: a silicon die at the centre of orbit rings,
+ * Exploded view of a wearable display stack (lens, adhesive bead, bezel) inside orbit rings,
  * with floating readouts that drift at different parallax depths.
  */
 export function HeroVisual({ progress }: { progress: MotionValue<number> }) {
@@ -27,60 +27,57 @@ export function HeroVisual({ progress }: { progress: MotionValue<number> }) {
         <circle cx="200" cy="350" r="3" fill="currentColor" fillOpacity="0.3" />
       </motion.svg>
 
-      {/* the chip */}
+      {/* exploded view: cover lens / adhesive bead / bezel */}
       <motion.div style={{ y: mid }} className="absolute inset-0 grid place-items-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.4, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative h-[38%] w-[38%]"
-        >
-          {/* pins */}
-          <svg viewBox="0 0 200 200" className="absolute -inset-[16%] h-[132%] w-[132%] text-ink">
-            {Array.from({ length: 8 }).map((_, i) => {
-              const p = 44 + i * 16;
-              return (
-                <g key={i} stroke="currentColor" strokeOpacity="0.28" strokeWidth="3" strokeLinecap="round">
-                  <line x1={p} y1="8" x2={p} y2="26" />
-                  <line x1={p} y1="174" x2={p} y2="192" />
-                  <line x1="8" y1={p} x2="26" y2={p} />
-                  <line x1="174" y1={p} x2="192" y2={p} />
-                </g>
-              );
-            })}
-          </svg>
-          <div className="absolute inset-0 rounded-[22%] bg-gradient-to-br from-[#3a3a3e] to-[#111113] shadow-[0_30px_60px_-15px_rgb(0_0_0/0.45),inset_0_1px_0_rgb(255_255_255/0.12)] dark:from-[#2c2c30] dark:to-[#0a0a0b] dark:ring-1 dark:ring-white/10">
-            <div className="absolute inset-[14%] rounded-[16%] bg-[#0b0b0d] ring-1 ring-white/[0.06]">
-              <svg viewBox="0 0 100 100" className="h-full w-full">
-                <defs>
-                  <linearGradient id="die" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#2997FF" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#0071E3" stopOpacity="0.5" />
-                  </linearGradient>
-                </defs>
-                <g stroke="#fff" strokeOpacity="0.08">
-                  {[20, 35, 50, 65, 80].map((v) => (
-                    <g key={v}>
-                      <line x1={v} y1="10" x2={v} y2="90" />
-                      <line x1="10" y1={v} x2="90" y2={v} />
-                    </g>
-                  ))}
-                </g>
-                <rect x="35" y="35" width="30" height="30" rx="4" fill="url(#die)" />
-                <rect x="20" y="20" width="12" height="12" rx="2" fill="#fff" fillOpacity="0.12" />
-                <rect x="68" y="68" width="12" height="12" rx="2" fill="#fff" fillOpacity="0.12" />
-                <rect x="68" y="20" width="12" height="7" rx="2" fill="#fff" fillOpacity="0.08" />
-              </svg>
-            </div>
-          </div>
-        </motion.div>
+        <svg viewBox="-10 50 470 320" className="w-[92%] text-ink">
+          <defs>
+            <linearGradient id="hv-lens" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#dfe6ee" stopOpacity="0.7" />
+            </linearGradient>
+            <linearGradient id="hv-bezel" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#3a3a3e" />
+              <stop offset="100%" stopColor="#141416" />
+            </linearGradient>
+          </defs>
+          {/* guide lines */}
+          <g stroke="currentColor" strokeOpacity="0.18" strokeDasharray="3 5">
+            <line x1="90" y1="110" x2="90" y2="290" />
+            <line x1="310" y1="110" x2="310" y2="290" />
+          </g>
+          {/* bezel */}
+          <motion.g initial={{ y: -90 }} animate={{ y: 0 }} transition={{ duration: 1.3, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}>
+            <path d="M80 290 v22 a120 46 0 0 0 240 0 v-22" fill="#0e0e10" />
+            <ellipse cx="200" cy="290" rx="120" ry="46" fill="url(#hv-bezel)" />
+            <ellipse cx="200" cy="290" rx="92" ry="34" fill="#050506" />
+            <ellipse cx="200" cy="290" rx="74" ry="27" fill="#0d1a2b" />
+            <path d="M150 292 h14 l6 -10 l8 20 l8 -26 l7 22 l5 -6 h20" fill="none" stroke="#2997FF" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+          </motion.g>
+          {/* adhesive bead */}
+          <motion.g initial={{ y: 0, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 1.9 }}>
+            <ellipse cx="200" cy="200" rx="104" ry="40" fill="none" className="stroke-accent" strokeWidth="9" strokeOpacity="0.9" />
+            <ellipse cx="200" cy="200" rx="104" ry="40" fill="none" stroke="#fff" strokeOpacity="0.5" strokeWidth="2" strokeDasharray="2 10" />
+          </motion.g>
+          {/* cover lens */}
+          <motion.g initial={{ y: 90 }} animate={{ y: 0 }} transition={{ duration: 1.3, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}>
+            <path d="M88 110 v8 a112 43 0 0 0 224 0 v-8" fill="currentColor" fillOpacity="0.08" />
+            <ellipse cx="200" cy="110" rx="112" ry="43" fill="url(#hv-lens)" stroke="currentColor" strokeOpacity="0.18" />
+            <path d="M140 96 q40 -22 104 -10" fill="none" stroke="#fff" strokeWidth="6" strokeLinecap="round" strokeOpacity="0.9" />
+          </motion.g>
+          {/* labels */}
+          <g fontFamily="Inter, sans-serif" fontSize="12" fontWeight="500" className="fill-muted">
+            <text x="330" y="114">Cover lens</text>
+            <text x="330" y="204" className="fill-accent">PUR adhesive</text>
+            <text x="330" y="294">Bezel</text>
+          </g>
+        </svg>
       </motion.div>
 
       {/* floating readouts */}
       <motion.div style={{ y: near }} className="absolute inset-0">
-        <FloatCard className="left-0 top-[16%] sm:-left-4" delay={1.9} icon={<Cpu size={16} />} label="Edge inference" value="38 ms" />
-        <FloatCard className="bottom-[14%] right-0 sm:-right-2" delay={2.05} icon={<Activity size={16} />} label="System uptime" value="99.9%" />
-        <FloatCard className="bottom-[4%] left-[10%] hidden sm:flex" delay={2.2} icon={<ShieldCheck size={16} />} label="Patents" value="8 granted" />
+        <FloatCard className="left-0 top-[16%] sm:-left-4" delay={1.9} icon={<TrendingUp size={16} />} label="Forerunner 55 yield" value="97% → 100%" />
+        <FloatCard className="bottom-[14%] right-0 sm:-right-2" delay={2.05} icon={<Gauge size={16} />} label="PUR 4.0 ROI" value="150%" />
+        <FloatCard className="bottom-[4%] left-[10%] hidden sm:flex" delay={2.2} icon={<Factory size={16} />} label="New line investment" value="US$160M" />
       </motion.div>
     </div>
   );

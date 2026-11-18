@@ -46,7 +46,18 @@ export function Hero() {
             transition={{ duration: 0.8, delay: d(0.08) }}
             className="mt-8 text-[17px] font-medium text-ink md:text-[19px]"
           >
-            {profile.name} <span className="text-muted">·</span> {profile.nameEn}
+            <span className="inline-flex items-center gap-3">
+              <img
+                src={profile.avatar}
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full object-cover ring-2 ring-canvas shadow-soft"
+              />
+              <span>
+                {profile.name} <span className="text-muted">·</span> {profile.nameEn}
+              </span>
+            </span>
           </motion.p>
 
           <h1 id="hero-title" className="display-1 mt-3 text-balance">
@@ -111,7 +122,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: d(0.85) }}
             className="mt-10 flex items-center gap-2 text-[13px] text-muted"
           >
-            <MapPin size={14} /> {profile.location} · {profile.role}
+            <MapPin size={14} /> {profile.location} · {profile.role} @ {profile.company}
           </motion.p>
         </motion.div>
 
