@@ -238,7 +238,7 @@ export const projects: Project[] = [
     results: [
       { value: '100%', label: 'Forerunner 55 良率（原 97%）' },
       { value: '−13%', label: 'Forerunner 溢膠不良率' },
-      { value: '150%', label: 'PUR 4.0 設備 ROI' },
+      { value: '+12%', label: '新 PUR 膠材黏著力' },
     ],
   },
   {

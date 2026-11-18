@@ -76,7 +76,7 @@ export function HeroVisual({ progress }: { progress: MotionValue<number> }) {
       {/* floating readouts */}
       <motion.div style={{ y: near }} className="absolute inset-0">
         <FloatCard className="left-0 top-[16%] sm:-left-4" delay={1.9} icon={<TrendingUp size={16} />} label="Forerunner 55 yield" value="97% → 100%" />
-        <FloatCard className="bottom-[14%] right-0 sm:-right-2" delay={2.05} icon={<Gauge size={16} />} label="PUR 4.0 ROI" value="150%" />
+        <FloatCard className="bottom-[14%] right-0 sm:-right-2" delay={2.05} icon={<Gauge size={16} />} label="PUR 4.0 expected ROI" value="330%" />
         <FloatCard className="bottom-[4%] left-[10%] hidden sm:flex" delay={2.2} icon={<Factory size={16} />} label="New line investment" value="US$160M" />
       </motion.div>
     </div>
