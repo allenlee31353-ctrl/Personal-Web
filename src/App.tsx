@@ -6,6 +6,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Expertise } from './components/Expertise';
 import { Projects } from './components/Projects';
+import { Impact } from './components/Impact';
 import { Insights } from './components/Insights';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -28,6 +29,7 @@ export default function App() {
         <About />
         <Expertise />
         <Projects />
+        <Impact />
         <Insights />
         <Contact />
       </main>

@@ -34,6 +34,7 @@ export const navItems = [
   { id: 'about', label: '關於' },
   { id: 'expertise', label: '專業' },
   { id: 'projects', label: '作品' },
+  { id: 'impact', label: '成果' },
   { id: 'insights', label: '文章' },
   { id: 'contact', label: '聯絡' },
 ] as const;
@@ -234,7 +235,7 @@ export const projects: Project[] = [
     solution:
       '重新定義點膠量與擋牆設計以控制溢漏，調整 UV 固化條件與遮光區處理以解決未固化，並比較 PUR 與 LOCA 方案，為 Venu 選出成本最佳的貼合方式。',
     results: [
-      { value: '+22.5%', label: 'InReach 良率提升' },
+      { value: '77.5 → 100%', label: 'InReach LOCA 溢漏良率' },
       { value: '17.5%', label: 'Lily 2 未固化問題改善' },
       { value: '−6.7%', label: 'Venu 貼合成本' },
     ],
@@ -303,6 +304,79 @@ export const projects: Project[] = [
     ],
   },
 ];
+/* ---------------- Impact (2021–2026) ---------------- */
+
+export interface ImpactItem {
+  /** Headline figure exactly as reported. */
+  value: string;
+  label: string;
+  product?: string;
+  /** Optional before → after detail shown under the label. */
+  detail?: string;
+}
+
+export const impactNote =
+  '2021–2026 年在 Garmin 的量化成果。2024 年僅含年中報告，2025 年列出晉升里程碑、量化成果尚未納入；各項指標單位不同，請分別解讀、不互相比較。';
+
+export const impactKpis = [
+  { label: '2023 PUR 自動化預期效益', value: '5 人力', note: '0.035 man·hr/pcs；0.409 USD/pcs' },
+  { label: '2023 FR265 帶動', value: '+130%', note: 'Fitness 營收成長（報告所述）' },
+  { label: '2026 量產最終良率', value: '99.7–99.8%', note: 'FR170/70 99.7%；Decaf 99.8%' },
+  { label: '2026 PR → MP 標準成本差', value: '1.6–3.8%', note: '目標 < 5%' },
+];
+
+export const impactYears: { year: string; note?: string; items: ImpactItem[] }[] = [
+  {
+    year: '2021',
+    items: [{ value: '+12%', label: 'PUR 新膠材黏著力', product: '穿戴裝置' }],
+  },
+  {
+    year: '2022',
+    items: [
+      { value: '+66%', label: 'Universal Slot 單位面積容量', product: '產線載具' },
+      { value: '37.7%', label: '背光漏光良率改善', product: '手持產品' },
+      { value: '+22.5%', label: 'LOCA 溢漏良率', product: 'inReach', detail: '77.5% → 100%' },
+      { value: '13%', label: 'PUR 溢膠不良率改善', product: 'Forerunner 265' },
+      { value: '−6.7%', label: '貼合方案成本降低', product: 'Venu 3' },
+    ],
+  },
+  {
+    year: '2023',
+    items: [
+      { value: '53%', label: 'Tumble fail 問題解決', product: 'Forerunner 265' },
+      { value: '41%', label: 'Bezel ledge 外露問題解決', product: 'Lily 2' },
+      { value: '17.5%', label: 'LOCA 未固化問題解決', product: 'Lily 2' },
+      { value: '16%', label: '防水問題解決', product: 'Lily 2' },
+      { value: '+4.3%', label: 'LOCA 溢漏良率提升', product: 'Lily 2' },
+    ],
+  },
+  {
+    year: '2024',
+    note: '年中報告',
+    items: [{ value: '3%', label: 'ALS 脫落問題解決', product: 'Lily 2 Active' }],
+  },
+  {
+    year: '2025',
+    note: '里程碑',
+    items: [
+      {
+        value: '晉升',
+        label: 'NPI Advanced Engineer',
+        product: 'Garmin Asia',
+        detail: '2025 年 6 月起帶領 Instinct 系列製程開發，並指導新進工程師。量化成果尚未納入。',
+      },
+    ],
+  },
+  {
+    year: '2026',
+    items: [
+      { value: '47.6% → 0%', label: 'Tumble fail 歸零', product: 'Forerunner 170 / 70' },
+      { value: '8.4% → 0%', label: 'FPC 金手指斷裂歸零', product: 'Decaf' },
+      { value: '+19.4%', label: '產能 UPH 提升（計算值）', product: '產線', detail: 'UPH 180 → 215' },
+    ],
+  },
+];
+
 /* ---------------- Insights ---------------- */
 
 export const articleCategories = ['全部', '製程技術', '品質管理', '產業觀察', '職涯心得'] as const;
@@ -374,13 +448,14 @@ export const articles: Article[] = [
   {
     id: 'mechanical-to-npi',
     title: '從機構設計到 NPI：我的職涯轉折',
-    excerpt: '從畫圖、模擬到帶領新產品進量產，每一段經歷都在補上一塊系統拼圖。',
+    excerpt: '從畫圖、模擬、帶領新產品進量產，到 2025 年晉升 NPI Advanced Engineer，每一段經歷都在補上一塊系統拼圖。',
     category: '職涯心得',
     date: '2025-08-20',
     readTime: 5,
     body: [
       '我的第一份工作是機構與 CAE 工程師，關心的是單一零件會不會壞。到了康寧，視角變成一整條產線的設備與流程；進入 Garmin 後，則要同時顧到設計、製程、品質與供應鏈。',
       '每次轉換都很不適應，但也讓我看到：很多量產問題在設計階段就埋下了，而很多設計限制其實來自製程。能同時理解兩邊，是 NPI 工程師最大的價值。',
+      '2025 年，我晉升為 NPI Advanced Engineer。工作重心從「自己把問題解決」轉向「讓團隊有能力解決問題」：帶領 Instinct 系列的製程開發、把經驗整理成 Confluence 上的標準文件，並指導新進工程師獨立執行製程。',
       '如果你也在考慮從研發轉向製造，我的建議是先學會看懂產線的數據，那會是你和工廠溝通的共同語言。',
     ],
   },
